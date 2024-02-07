@@ -69,7 +69,6 @@ func main() {
 		fmt.Println(users)
 		return c.Render(http.StatusOK, "users", nil)
 	})
-
 	// Start the server
 	e.Start(":8080")
 }
