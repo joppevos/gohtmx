@@ -1,0 +1,40 @@
+{{ block "index" . }}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>htmx Example</title>
+    <script src="https://unpkg.com/htmx.org@1.5.0/dist/htmx.js"></script>
+</head>
+<body>
+<!--add form to add a new user-->
+<!--<form hx-post="/add" hx-target="next tr" hx-swap="beforeend">-->
+<!--    <input type="text" name="name" placeholder="Name">-->
+<!--    <input type="number" name="age" placeholder="Age">-->
+<!--    <button type="submit">Add</button>-->
+</form>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Age</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{ template "users" . }}
+        </tbody>
+    </table>
+</body>
+</html>
+{{ end }}
+
+{{ block "users" . }}
+    {{range .}}
+    <tr id="datarow-{{.Id}}">
+        <td>{{.Id}}</td>
+        <td>{{.Name}}</td>
+        <td>{{.Age}}</td>
+        <td><button  hx-delete="/delete/{{.Id}}" type="button">Click Me!</button></td>
+    </tr>
+    {{end}}
+{{ end }}
